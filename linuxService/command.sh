@@ -1,3 +1,4 @@
+#for centos 7, ubuntu
 #建立一個符號連結，稱為latest,指向 Tomcat 安裝目錄。
 sudo ln -s /opt/tomcat/apache-tomcat-${VERSION} /opt/tomcat/latest
 
