@@ -1,0 +1,22 @@
+[Unit]
+Description=Tomcat Server
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+User=root
+Group=root
+
+Environment=JAVA_HOME=/usr/local/jdk1.8.0_102
+
+Environment=CATALINA_HOME=/opt/tomcat/latest
+Environment=CATALINA_BASE=/opt/tomcat/latest
+Environment=CATALINA_PID=/opt/tomcat/latest/temp/tomcat.pid
+Environment='CATALINA_OPTS=-Xms1024M -Xmx1024M'
+
+ExecStart=/opt/tomcat/latest/bin/catalina.sh start
+ExecStop=/opt/tomcat/latest/bin/catalina.sh stop
+
+[Install]
+WantedBy=multi-user.target
