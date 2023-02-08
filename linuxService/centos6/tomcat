@@ -1,0 +1,27 @@
+#!/bin/bash
+#chkconfig: 2345 10 90
+#description: tomcat service
+
+JAVA_HOME=/usr/local/jre1.8.0_171
+PATH=$JAVA_HOME/bin:$PATH
+CATALINA_HOME=/usr/local/apache-tomcat-8.5.34
+
+export JAVA_HOME
+export PATH
+export CATALINA_HOME
+
+case $1 in
+  start)
+    sh $CATALINA_HOME/bin/startup.sh
+;;
+  stop)
+    sh $CATALINA_HOME/bin/shutdown.sh
+;;
+
+restart)
+  sh $CATALINA_HOME/bin/shutdown.sh
+  sh $CATALINA_HOME/bin/startup.sh
+;;
+
+esac
+exit 0
