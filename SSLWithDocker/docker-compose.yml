@@ -1,0 +1,25 @@
+version: "2.4"
+services:
+  web:
+    #hostname: test
+    image: tomcat:9.0.58-jdk11-corretto
+    container_name: tomcat
+    volumes:
+      - "./PA.war:/usr/local/tomcat/webapps/PA.war"
+      - "./conf/tomcat.keystore:/usr/local/tomcat/conf/tomcat.keystore"
+      - "./conf/server.xml:/usr/local/tomcat/conf/server.xml"
+      - "./conf/404.html:/usr/local/tomcat/webapps/ROOT/404.html"
+      - "./conf/500.html:/usr/local/tomcat/webapps/ROOT/500.html"
+      - "./conf/web.xml:/usr/local/tomcat/conf/web.xml"
+      - "./logs:/usr/local/tomcat/logs"
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    restart: "always"
+    environment:
+      CATALINA_OPTS: "-server -Xms1G -Xmx1G"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "30"
